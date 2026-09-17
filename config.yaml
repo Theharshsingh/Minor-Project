@@ -1,0 +1,38 @@
+# Privacy-Aware Facial Emotion and Engagement Analyzer
+# All processing is LOCAL. No raw video is stored by default.
+
+input:
+  source: 0                  # 0 = webcam, or path to video file
+  width: 640
+  height: 480
+  fps: 30
+
+mediapipe:
+  model_path: models/face_landmarker.task
+  num_faces: 1
+  min_face_detection_confidence: 0.5
+  min_face_presence_confidence: 0.5
+  min_tracking_confidence: 0.5
+
+thresholds:
+  ear_blink: 0.20            # Eye Aspect Ratio below this = blink
+  ear_closed_frames: 15      # Consecutive frames for prolonged closure alert
+  mar_yawn: 0.65             # Mouth Aspect Ratio above this = yawn
+  yawn_frames: 20            # Consecutive frames to confirm yawn
+  head_pitch_range: [-20, 20]  # degrees; outside = looking away vertically
+  head_yaw_range: [-30, 30]    # degrees; outside = looking away horizontally
+
+engagement:
+  weights:
+    attention: 0.35
+    blink_rate: 0.20
+    expression: 0.20
+    participation: 0.25
+  window_seconds: 30         # Rolling window for score calculation
+
+storage:
+  store_raw_video: false      # Privacy default: never store raw frames
+
+privacy:
+  consent_required: true
+  data_retention_days: 30

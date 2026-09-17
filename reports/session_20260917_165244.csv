@@ -1,0 +1,2 @@
+session_id,started_at,duration_seconds,total_frames,face_present_pct,blink_count,yawn_count,nod_count,on_screen_pct,avg_engagement,min_engagement,max_engagement,engagement_label,top_expression,speaking_pct
+20260917_165244,2026-09-17T16:52:44,17.8,392,100.0,9,0,1,99.0,74.9,59.5,83.0,High,Neutral,0.0
